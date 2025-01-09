@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FormScreen = () => {
-  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [age, setAge] = useState('');
   const [nationality, setNationality] = useState('');
@@ -28,8 +28,8 @@ const FormScreen = () => {
   const handleSubmit = async () => {
 
     const formData = {
-      name,
       firstName,
+      lastName,
       age,
       nationality,
       weight,
@@ -56,14 +56,14 @@ const FormScreen = () => {
             <Text style={styles.stepTitle}>Step 1: Personal Information</Text>
             <TextInput
               style={styles.input}
-              placeholder="Enter your name"
+              placeholder="Enter your Last Name"
               placeholderTextColor="#a0a0a0"
-              value={name}
-              onChangeText={setName}
+              value={lastName}
+              onChangeText={setLastName}
             />
             <TextInput
               style={styles.input}
-              placeholder="Enter your first name"
+              placeholder="Enter your first Name"
               placeholderTextColor="#a0a0a0"
               value={firstName}
               onChangeText={setFirstName}
