@@ -2,8 +2,9 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Link } from 'expo-router';
 
-const Home = () => {
+const Landing = () => {
   return (
+    
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Body Tracker</Text>
       <Image
@@ -75,4 +76,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Landing;
