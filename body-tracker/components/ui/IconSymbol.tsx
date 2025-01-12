@@ -10,7 +10,7 @@ const MAPPING = {
 
   'house.fill': 'home',
   'person.fill': 'person',
-  'health': 'health-and-safety',
+  'heart.fill': 'health-and-safety',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
 } as Partial<

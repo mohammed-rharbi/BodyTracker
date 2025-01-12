@@ -1,34 +1,41 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, StatusBar, ImageBackground } from 'react-native';
 import React from 'react';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 const Home = () => {
+
+
+   const goToChart = ()=>{
+    router.push('/tracking');
+   }
+   
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
       <View style={styles.headerContainer}>
         <Text style={styles.headerTitle}>BodyTracker</Text>
+
+        <Link style={styles.profile} href={'/profile'}>
         <Image
           source={{ uri: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png' }} 
           style={styles.headerLogo}
         />
+        </Link>
       </View>
 
-
-
-      <TouchableOpacity style={styles.mainCard}>
+      <TouchableOpacity style={styles.mainCard} onPress={goToChart} >
       <ImageBackground
           source={{ uri: 'https://i.pinimg.com/736x/e2/9f/87/e29f8773b1ebd9afd5006c3c622ba8ca.jpg' }} 
           style={styles.backgroundImage}
         imageStyle={styles.backgroundImageStyle}
       >
         <View style={styles.overlay}>
-          <Text style={styles.cardTitle}>Health Summary</Text>
-          <Text style={styles.cardText}>Track your progress daily.</Text>
+          <Text style={styles.MaincardTitle}>Health Summary</Text>
+          <Text style={styles.MaincardText}>Track your progress daily.</Text>
         </View>
       </ImageBackground>
     </TouchableOpacity>
-
 
       <TouchableOpacity style={styles.card}>
         <Image
@@ -152,7 +159,7 @@ const styles = StyleSheet.create({
   mainCard: {
     borderRadius: 20,
     overflow: 'hidden',
-    margin: 20,
+    marginBlock:20,
     height: 150,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -170,11 +177,29 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Semi-transparent overlay
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
   },
+
+  MaincardTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 5,
+    backgroundColor:'rgba(0,0,0,0.3)'
+  },
+  MaincardText: {
+    fontSize: 14,
+    color: '#FFFFFF',
+    backgroundColor:'rgba(0,0,0,0.3)'
+
+  },
+
+  profile:{
+    cursor:'pointer',
+  }
 
 
 });

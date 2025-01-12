@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'rea
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
+import Logout from '@/components/signout';
 
 interface UserTypes {
   lastName: string;
@@ -11,18 +12,26 @@ interface UserTypes {
   weight: string;
   height: string;
   address: string;
+  gender: string;
 }
 
 const ProfileScreen = () => {
   const [user, setUser] = useState<UserTypes | null>(null);
+  const [fat , setFat] = useState(null)
 
   useEffect(() => {
+
     const fetchUserInfo = async () => {
       try {
         const userInfo = await AsyncStorage.getItem('formData');
+        const userFat = await AsyncStorage.getItem('bodyFat');
+
+        
         if (userInfo) {
           const data = JSON.parse(userInfo);
+          const fat = userFat ? JSON.parse(userFat) : null;
           setUser(data);
+          setFat(fat)
         }
       } catch (error) {
         console.error('Error fetching user info:', error);
@@ -51,6 +60,7 @@ const ProfileScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
+        
       <View style={styles.container}>
 
         <View style={styles.profileHeader}>
@@ -81,6 +91,10 @@ const ProfileScreen = () => {
             <Text style={styles.infoLabel}>Height:</Text>
             <Text style={styles.infoValue}>{user.height} cm</Text>
           </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.infoLabel}>Gender:</Text>
+            <Text style={styles.infoValue}>{user.gender}</Text>
+          </View>
         </View>
 
 
@@ -90,10 +104,26 @@ const ProfileScreen = () => {
         </View>
 
 
+        <View style={styles.infoSection}>
+          <Text style={styles.sectionTitle}>Body Tracking</Text>
+        
+          <View style={styles.infoItem}>
+            <Text style={styles.infoLabel}>Current Fat:</Text>
+            <Text style={styles.infoValue}>{fat} %</Text>
+          </View>
+         
+        </View>
+
+
         <TouchableOpacity style={styles.editButton} onPress={handleEditProfile}>
           <Text style={styles.editButtonText}>Edit Profile</Text>
         </TouchableOpacity>
+  
       </View>
+
+        <View style={styles.container}>
+            <Logout/>
+        </View>
     </ScrollView>
   );
 };
@@ -180,6 +210,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+
 });
 
 export default ProfileScreen;

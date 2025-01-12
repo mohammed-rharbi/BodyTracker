@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Picker } from '@react-native-picker/picker';
+import { router, Router } from 'expo-router';
 
 const FormScreen = () => {
   const [lastName, setLastName] = useState('');
@@ -10,6 +12,8 @@ const FormScreen = () => {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [address, setAddress] = useState('');
+  const [gender, setGender] = useState('');
+
 
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -22,6 +26,8 @@ const FormScreen = () => {
       if (!lastName.trim()) newErrors.lastName = 'Last Name is required';
       if (!firstName.trim()) newErrors.firstName = 'First Name is required';
       if (!age.trim()) newErrors.age = 'Age is required';
+      if (!gender.trim()) newErrors.age = 'gander is required';
+
       if (isNaN(parseFloat(age)) || parseFloat(age) <= 0) newErrors.age = 'Invalid age';
     } else if (step === 1) {
       if (!nationality.trim()) newErrors.nationality = 'Nationality is required';
@@ -61,12 +67,14 @@ const FormScreen = () => {
         weight,
         height,
         address,
+        gender
       };
 
       try {
         await AsyncStorage.setItem('formData', JSON.stringify(formData));
         console.log('Form data saved successfully!');
         Alert.alert('Success', 'Form Submitted and Data Saved!');
+        router.push('/Home')
       } catch (error) {
         console.error('Error saving form data:', error);
         Alert.alert('Error', 'Failed to save form data.');
@@ -114,6 +122,20 @@ const FormScreen = () => {
               keyboardType="numeric"
             />
             {errors.age && <Text style={styles.errorText}>{errors.age}</Text>}
+
+            <Picker
+              selectedValue={gender}
+              onValueChange={(itemValue) => {
+                setGender(itemValue);
+                setErrors((prev) => ({ ...prev, gender: '' }));
+              }}
+              style={[styles.input, errors.gender && styles.inputError]}
+            >
+            <Picker.Item label="Select Gender" value="" />
+            <Picker.Item label="Male" value="male" />
+            <Picker.Item label="Female" value="female" />
+          </Picker>
+          {errors.gender && <Text style={styles.errorText}>{errors.gender}</Text>}
           </>
         );
       case 1:
@@ -155,6 +177,7 @@ const FormScreen = () => {
               keyboardType="numeric"
             />
             {errors.height && <Text style={styles.errorText}>{errors.height}</Text>}
+
           </>
         );
       case 2:
@@ -272,6 +295,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 8,
+    color: '#333',
   },
 });
 
