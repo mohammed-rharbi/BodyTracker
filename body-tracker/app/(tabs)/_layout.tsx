@@ -43,7 +43,7 @@ export default function TabLayout() {
         name="bodyFat"
         options={{
           title: 'bodyFat',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="health" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="heart.fill" color={color} />,
         }}
       />  
 
