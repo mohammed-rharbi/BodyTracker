@@ -14,6 +14,7 @@ interface UserTypes {
 }
 
 const EditProfileScreen = () => {
+  
   const { user } = useLocalSearchParams();
   const initialUser = user ? JSON.parse(user as string) : {
     lastName: '',
