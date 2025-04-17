@@ -42,9 +42,7 @@ const Traking = () => {
       fetchUserInfo();
     }, []);
 
-   const goToChart = ()=>{
-    router.push('/tracking');
-   }
+
 
    if (!user) {
     return (
@@ -59,7 +57,7 @@ const Traking = () => {
     <ScrollView contentContainerStyle={styles.container}>
 
 
-      <TouchableOpacity style={styles.mainCard} onPress={goToChart} >
+      <TouchableOpacity style={styles.mainCard} >
       <ImageBackground
           source={{ uri: 'https://i.pinimg.com/474x/7a/cb/ab/7acbab9d3678c8e06dff64bdbf582423.jpg' }} 
           style={styles.backgroundImage}
