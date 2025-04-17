@@ -9,6 +9,18 @@ const Home = () => {
     router.push('/tracking');
    }
    
+   const goToSleepTracker = ()=>{
+    router.push('/sleepTracker');
+   }
+
+   const goToNutrition = ()=>{
+    router.push('/nutrition');
+   }
+
+   const goWorkout = ()=>{
+    router.push('/workout');
+   }
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -37,7 +49,7 @@ const Home = () => {
       </ImageBackground>
     </TouchableOpacity>
 
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity style={styles.card} onPress={goToChart}>
         <Image
           source={{ uri: 'https://cdn3.iconfinder.com/data/icons/professional-avatar-1/64/sport-man-avatar-men-runner-user-512.png' }}
           style={styles.cardImage}
@@ -48,9 +60,9 @@ const Home = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity style={styles.card} onPress={goWorkout}>
         <Image
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3565/3565418.png' }}
+          source={{ uri:'https://cdn-icons-png.flaticon.com/512/680/680604.png' }}
           style={styles.cardImage}
         />
         <View style={styles.cardContent}>
@@ -59,9 +71,9 @@ const Home = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity style={styles.card} onPress={goToNutrition}>
         <Image
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png' }}
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3565/3565418.png' }}
           style={styles.cardImage}
         />
         <View style={styles.cardContent}>
@@ -70,7 +82,7 @@ const Home = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity style={styles.card} onPress={goToSleepTracker}>
         <Image
           source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3589/3589036.png' }}
           style={styles.cardImage}
@@ -110,7 +122,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     paddingTop: 25,
-    marginTop:20
+    marginTop:20,
+    position:'fixed'
   },
 
   headerTitle: {

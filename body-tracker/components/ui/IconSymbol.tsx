@@ -11,6 +11,7 @@ const MAPPING = {
   'house.fill': 'home',
   'person.fill': 'person',
   'heart.fill': 'health-and-safety',
+  'camera.fill':'camera',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
 } as Partial<

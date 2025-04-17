@@ -42,18 +42,18 @@ export default function TabLayout() {
       <Tabs.Screen
         name="bodyFat"
         options={{
-          title: 'bodyFat',
+          title: 'Body Fat',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="heart.fill" color={color} />,
         }}
       />  
 
         <Tabs.Screen
-        name="index"
+        name="camera"
         options={{
-          title: 'Intro',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.fill" color={color} />,
+          title: 'Camera',
+          tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="camera.fill" color={focused ? '#FF0000' : '#00FF00'} />,
         }}
       />  
       </Tabs>
-  );
+  ); 
 }
